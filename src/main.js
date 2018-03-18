@@ -25,14 +25,14 @@ Vue.http.interceptors.push((request, next) => {
 router.beforeEach((to, from, next) => {
   store.dispatch('loadToken');
   const loggedIn = store.getters.isLoggedIn;
-  if (to.matched.some(record => record.meta.isPublic)) {
+  if (to.matched.some((record) => record.meta.isPublic)) {
     if (loggedIn) {
-      next({name: 'Dashboard'});
+      next({ name: 'Dashboard' });
     }
     next();
-  } else if (to.matched.some(record => record.meta.isPrivate)) {
+  } else if (to.matched.some((record) => record.meta.isPrivate)) {
     if (!loggedIn) {
-      next({name: 'Login'});
+      next({ name: 'Login' });
     }
     next();
   }
@@ -40,7 +40,10 @@ router.beforeEach((to, from, next) => {
 
 Vue.config.productionTip = false;
 
-Vue.filter('capitalize', value => value.charAt(0).toUpperCase() + value.slice(1));
+Vue.filter(
+  'capitalize',
+  (value) => value.charAt(0).toUpperCase() + value.slice(1)
+);
 
 /* eslint-disable no-new */
 new Vue({

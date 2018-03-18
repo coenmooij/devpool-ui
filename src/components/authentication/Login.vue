@@ -2,7 +2,9 @@
     <div class="login">
 
 
-        <div class="alert alert-danger text-center" role="alert" v-if="error">Incorrect email/password combination</div>
+        <div class="alert alert-danger text-center" role="alert" v-if="error">
+          Incorrect email/password combination
+          </div>
         <form>
             <div class="form-group">
                 <label for="email">Email</label>
@@ -23,45 +25,49 @@
 </template>
 
 <script>
-  import {mapActions, mapGetters} from 'vuex';
+import { mapActions, mapGetters } from "vuex";
 
-  export default {
-    data() {
-      return {
-        email: '',
-        password: '',
-        error: false,
-      };
-    },
-    computed: {
-      ...mapGetters({
-        token: 'getToken',
-      }),
-    },
-    methods: {
-      ...mapActions({
-        setToken: 'setToken',
-      }),
-      login(){
-        this.$http.post('authentication/login', {
+export default {
+  data() {
+    return {
+      email: "",
+      password: "",
+      error: false
+    };
+  },
+  computed: {
+    ...mapGetters({
+      token: "getToken"
+    })
+  },
+  methods: {
+    ...mapActions({
+      setToken: "setToken"
+    }),
+    login() {
+      this.$http
+        .post("authentication/login", {
           email: this.email,
-          password: this.password,
-        }).then(response => response.json())
-          .then(data => {
-            if (data.token) {
-              this.setToken(data.token);
-            }
-            this.$router.push({name: 'Dashboard'});
-          }).catch(function (error) {
+          password: this.password
+        })
+        .then(response => {
+          return response.json();
+        })
+        .then(data => {
+          this.setToken(data.data.token);
+          this.$router.push({ name: "Dashboard" });
+        })
+        .catch(error => {
+          console.error("helaas pindakaas");
           this.error = error;
         });
-      },
-    },
-  };
+    }
+  }
+};
 </script>
 
 <style scoped>
-    button {
-        width: 100%;
-    }
+button {
+  width: 100%;
+}
 </style>

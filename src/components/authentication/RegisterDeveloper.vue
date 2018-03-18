@@ -6,10 +6,17 @@
                 <form>
                     <div class="form-group">
                         <label for="firstName">First Name*</label>
-                        <input class="form-control" id="firstName" name="firstName" type="text" v-model="firstName"
-                               v-validate="'required|alpha_spaces'">
-                        <small v-if="showErrors && errors.has('firstName')" class="form-text text-danger"><span
-                                class="fa fa-remove help is-danger"></span>
+                        <input
+                        class="form-control"
+                        id="firstName"
+                        name="firstName"
+                        type="text"
+                        v-model="firstName"
+                        v-validate="'required|alpha_spaces'
+                        ">
+                        <small v-if="showErrors && errors.has('firstName')" class="form-text text-danger">
+                            <span
+                               class="fa fa-remove help is-danger"></span>
                             {{ errors.first('firstName') }}
                         </small>
                     </div>
@@ -52,53 +59,53 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
-  
-  export default {
-    data(){
-      return {
-        firstName: '',
-        lastName: '',
-        email: '',
-        password: '',
-        error: false,
-        showErrors: false,
-      };
+export default {
+  data() {
+    return {
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: "",
+      error: false,
+      showErrors: false
+    };
+  },
+  methods: {
+    submit() {
+      this.$validator.validateAll().then((result) => {
+        if (result) {
+          this.register();
+        } else {
+          this.showErrors = true;
+        }
+      });
     },
-    methods: {
-      submit() {
-        this.$validator.validateAll().then(result => {
-          if (result) {
-            this.register();
-          } else {
-            this.showErrors = true;
-          }
-        });
-      },
-      register(){
-        this.$http.post('authentication/register-developer', {
+    register() {
+      this.$http
+        .post("authentication/register-developer", {
           first_name: this.firstName,
           last_name: this.lastName,
           email: this.email,
-          password: this.password,
-        }).then(response => {
-          return response.json();
-        }).then(data => {
-          this.$router.push({ name: 'Login' });
-        }).catch(error => {
+          password: this.password
+        })
+        .then((response) => response.json())
+        .then(() => {
+          this.$router.push({ name: "Login" });
+        })
+        .catch((error) => {
           this.error = error;
         });
-      },
-    },
-  };
+    }
+  }
+};
 </script>
 
 <style scoped>
-    button {
-        width: 100%;
-    }
+button {
+  width: 100%;
+}
 
-    form {
-        padding: 10px;
-    }
+form {
+  padding: 10px;
+}
 </style>

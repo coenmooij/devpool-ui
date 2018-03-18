@@ -28,48 +28,52 @@
 </template>
 
 <script>
-    export default {
-        data(){
-            return {
-                email: '',
-                showSuccessMessage: false,
-                showErrors: false,
-            };
-        },
-        methods: {
-            redirect(){
-                this.$router.push('/');
-            },
-            submit(){
-                this.$validator.validateAll().then(result => {
-                    if (result) {
-                        this.reset();
-                    } else {
-                        this.showErrors = true;
-                    }
-                });
-            },
-            reset(){
-                this.$http.post('authentication/resetPassword', {
-                    email: this.email,
-                }).then(response => {
-                    response.json()
-                }).then(data => {
-                    this.showSuccessMessage = true;
-                }).catch(error => {
-                    this.error = error;
-                });
-            },
-        },
+export default {
+  data() {
+    return {
+      email: "",
+      showSuccessMessage: false,
+      showErrors: false
+    };
+  },
+  methods: {
+    redirect() {
+      this.$router.push("/");
+    },
+    submit() {
+      this.$validator.validateAll().then(result => {
+        if (result) {
+          this.reset();
+        } else {
+          this.showErrors = true;
+        }
+      });
+    },
+    reset() {
+      this.$http
+        .post("authentication/resetPassword", {
+          email: this.email
+        })
+        .then(response => {
+          response.json();
+        })
+        .then(() => {
+          this.showSuccessMessage = true;
+        })
+        .catch(error => {
+          this.error = error;
+        });
     }
+  }
+};
 </script>
 
 <style scoped>
-    button {
-        width: 100%;
-    }
+button {
+  width: 100%;
+}
 
-    form {
-        padding: 10px;
-    }
+form {
+  padding: 10px;
+}
 </style>

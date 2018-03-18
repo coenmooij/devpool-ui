@@ -19,7 +19,9 @@
                         <hr>
                         <router-link :to="{name:'PasswordReset'}">Reset your password</router-link>
                         <hr>
-                        <router-link :to="{name: 'RegisterDeveloper'}">Register as a Developer</router-link>
+                        <router-link :to="{name: 'RegisterDeveloper'}">
+                            Register as a Developer
+                        </router-link>
                     </div>
             </div>
         </div>
@@ -27,14 +29,14 @@
 </template>
 
 <style>
-    .card {
-        margin-top: 2rem;
-        margin-bottom:2rem;
-        width:320px;
-    }
+.card {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  width: 320px;
+}
 
-    .card-body {
-        min-width: 300px;
-        padding: 1rem;
-    }
+.card-body {
+  min-width: 300px;
+  padding: 1rem;
+}
 </style>
