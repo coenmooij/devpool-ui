@@ -1,51 +1,39 @@
-import Vue from 'vue';
-import Router from 'vue-router';
-import Auth from '@/components/authentication/Auth';
-import Login from '@/components/authentication/Login';
-import RegisterDeveloper from '@/components/authentication/RegisterDeveloper';
-import PasswordReset from '@/components/authentication/PasswordReset';
-import Dashboard from '@/components/layout/Dashboard';
-import DeveloperList from '@/components/backoffice/DeveloperList';
+import Vue from "vue";
+import Router from "vue-router";
+import AuthenticationView from "@/components/authentication/Authentication";
+import authenticationRoutes from "./authentication";
+import developerRoutes from "./developer";
+import backofficeRoutes from "./backoffice";
+import MainView from "@/components/layout/Main";
 
 Vue.use(Router);
 
 export default new Router({
-  mode: 'history',
+  mode: "history",
   routes: [
     {
-      path: '/',
-      name: 'auth',
-      component: Auth,
-      redirect: { name: 'Login' },
+      path: "/",
+      name: "AuthenticationView",
+      component: AuthenticationView,
+      redirect: { name: "Login" },
       meta: { isPublic: true },
-      children: [
-        {
-          path: 'login',
-          name: 'Login',
-          component: Login,
-        }, {
-          path: 'register-developer',
-          name: 'RegisterDeveloper',
-          component: RegisterDeveloper,
-        }, {
-          path: 'password-reset',
-          name: 'PasswordReset',
-          component: PasswordReset,
-        },
-      ],
-    }, {
-      path: '/',
-      name: 'Dashboard',
-      component: Dashboard,
-      redirect: { name: 'DeveloperList' },
-      meta: { isPrivate: true },
-      children: [
-        {
-          path: 'developer-list',
-          name: 'DeveloperList',
-          component: DeveloperList,
-        },
-      ],
+      children: authenticationRoutes
     },
-  ],
+    {
+      path: "/",
+      name: "DeveloperView",
+      component: MainView,
+      redirect: { name: "DeveloperDashboard" },
+      meta: { isPrivate: true, isDeveloper: true },
+      children: developerRoutes
+    },
+    {
+      path: "/",
+      name: "main",
+      component: MainView,
+      redirect: { name: "BackofficeDashboard" },
+      meta: { isPrivate: true, isBackofficeUser: true },
+      children: backofficeRoutes
+    }
+  ]
 });

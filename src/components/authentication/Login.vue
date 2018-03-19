@@ -1,27 +1,39 @@
 <template>
-    <div class="login">
-
-
-        <div class="alert alert-danger text-center" role="alert" v-if="error">
-          Incorrect email/password combination
-          </div>
-        <form>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input class="form-control" id="email" name="email" type="text" v-model="email">
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input class="form-control" id="password" type="password" v-model="password">
-            </div>
-            <div class="divider"></div>
-            <button type="submit" class="btn btn-success text-white" @click.prevent="login">
-                <i class="fa fa-arrow-right"></i> Login
-            </button>
-            <div class="clearfix"></div>
-        </form>
-
+  <div class="login">
+    <div
+      v-if="error"
+      class="alert alert-danger text-center"
+      role="alert">
+      Incorrect email/password combination
     </div>
+    <form>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input 
+          id="email"
+          v-model="email"
+          class="form-control" 
+          name="email" 
+          type="text">
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input 
+          id="password" 
+          v-model="password" 
+          class="form-control" 
+          type="password">
+      </div>
+      <div class="divider"/>
+      <button 
+        type="submit" 
+        class="btn btn-success text-white" 
+        @click.prevent="login">
+        <i class="fa fa-arrow-right"/> Login
+      </button>
+      <div class="clearfix"/>
+    </form>
+  </div>
 </template>
 
 <script>
@@ -55,10 +67,9 @@ export default {
         })
         .then(data => {
           this.setToken(data.data.token);
-          this.$router.push({ name: "Dashboard" });
+          this.$router.push("/");
         })
         .catch(error => {
-          console.error("helaas pindakaas");
           this.error = error;
         });
     }

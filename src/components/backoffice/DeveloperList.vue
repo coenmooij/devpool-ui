@@ -9,7 +9,6 @@
         v-for="developer in developers"
         :key="developer.id"
         :developer="developer"/>
-      </app-developer>
     </div>
   </div>
 </template>

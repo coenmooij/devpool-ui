@@ -1,10 +1,19 @@
 <template>
   <nav class="navbar bg-dark justify-content-between">
     <div class="container">
-      <router-link tag="a" class="navbar-brand" :to="{name:'Dashboard'}">
+      <router-link 
+        :to="{name:'Dashboard'}"
+        tag="a" 
+        class="navbar-brand">
         <span class="text-white">Caspar Coding Developers</span>
       </router-link>
-      <span class="navbar-right"><a href="#" @click.prevent="logout">Logout</a></span>
+      <span class="navbar-right">
+        <a 
+          href="#"
+          @click.prevent="logout">
+          Logout
+        </a>
+      </span>
     </div>
   </nav>
 </template>
@@ -20,10 +29,10 @@ export default {
     logout() {
       this.$http
         .get("authentication/logout")
-        .then((response) => {
+        .then(response => {
           return response.json();
         })
-        .then((data) => {
+        .then(() => {
           this.clearToken();
           this.$router.push("/");
         });

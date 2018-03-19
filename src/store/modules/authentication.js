@@ -1,5 +1,5 @@
 const state = {
-  token: null,
+  token: null
 };
 
 const getters = {
@@ -8,35 +8,38 @@ const getters = {
   },
   getToken(state) {
     return state.token;
-  },
+  }
 };
 
 const actions = {
   setToken({ commit }, token) {
-    commit('SET_TOKEN', token);
+    commit("SET_TOKEN", token);
   },
   clearToken({ commit }) {
-    commit('CLEAR_TOKEN');
+    commit("CLEAR_TOKEN");
   },
   loadToken({ commit }) {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     if (token !== null) {
-      commit('SET_TOKEN', token);
+      commit("SET_TOKEN", token);
     }
-  },
+  }
 };
 
 const mutations = {
   SET_TOKEN(state, token) {
     state.token = token;
-    localStorage.setItem('token', token);
+    localStorage.setItem("token", token);
   },
   CLEAR_TOKEN(state) {
     state.token = null;
-    localStorage.removeItem('token');
-  },
+    localStorage.removeItem("token");
+  }
 };
 
 export default {
-  state, actions, getters, mutations,
+  state,
+  actions,
+  getters,
+  mutations
 };

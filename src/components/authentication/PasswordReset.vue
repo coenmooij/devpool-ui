@@ -1,30 +1,46 @@
 <template>
-    <div class="password-reset">
-        <div class="panel panel-default">
-            <div class="panel-body">
-                <div class="alert alert-success text-center" v-if="showSuccessMessage">
-                    <p><span class="fa fa-ok"></span> Instructions to reset your password have been sent to your email address.</p><br>
-                    <button class="btn btn-success" @click="redirect">Naar inloggen</button>
-                </div>
-                <form>
-                    <div class="form-group">
-                        <label for="email">Email*</label>
-                        <input class="form-control" id="email" name="Email" type="text" v-model.lazy="email"
-                               v-validate="'required|email'">
-                        <small v-if="showErrors && errors.has('Email')" class="form-text text-danger"><span
-                                class="fa fa-remove help is-danger"></span>
-                            {{ errors.first('Email') }}
-                        </small>
-                    </div>
-                    <div class="divider"></div>
-                    <button type="submit" class="btn btn-danger pull-right" @click.prevent="submit">
-                        <span class="fa fa-repeat"></span> Reset Password
-                    </button>
-                    <div class="clearfix"></div>
-                </form>
-            </div>
+  <div class="password-reset">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div
+          v-if="showSuccessMessage" 
+          class="alert alert-success text-center">
+          <p><i class="fa fa-ok"/> Instructions to reset your password have been sent to your email address.</p><br>
+          <button 
+            class="btn btn-success"
+            @click="redirect">
+            Naar inloggen
+          </button>
         </div>
+        <form>
+          <div class="form-group">
+            <label for="email">Email*</label>
+            <input 
+              v-validate="'required|email'"
+              id="email" 
+              v-model.lazy="email"
+              class="form-control" 
+              name="Email" 
+              type="text">
+            <small 
+              v-if="showErrors && errors.has('Email')" 
+              class="form-text text-danger">
+              <i class="fa fa-remove help is-danger"/>
+              {{ errors.first('Email') }}
+            </small>
+          </div>
+          <div class="divider"/>
+          <button 
+            type="submit" 
+            class="btn btn-danger pull-right" 
+            @click.prevent="submit">
+            <i class="fa fa-repeat"/> Reset Password
+          </button>
+          <div class="clearfix"/>
+        </form>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
