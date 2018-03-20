@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
+import { mapActions } from "vuex";
 
 export default {
   data() {
@@ -47,14 +47,10 @@ export default {
       error: false
     };
   },
-  computed: {
-    ...mapGetters({
-      token: "getToken"
-    })
-  },
   methods: {
     ...mapActions({
-      setToken: "setToken"
+      setToken: "setToken",
+      setType: "setType"
     }),
     login() {
       this.$http
@@ -67,7 +63,8 @@ export default {
         })
         .then(data => {
           this.setToken(data.data.token);
-          this.$router.push("/");
+          this.setType(data.data.type);
+          this.$router.push({ name: "MainView" });
         })
         .catch(error => {
           this.error = error;

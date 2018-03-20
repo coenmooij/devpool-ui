@@ -1,10 +1,18 @@
 import Vue from "vue";
 import Router from "vue-router";
-import AuthenticationView from "@/components/authentication/Authentication";
+
+import MainView from "@/components/layout/MainView";
+import AuthenticationView from "@/components/authentication/AuthenticationView";
+import BackofficeView from "@/components/backoffice/BackofficeView";
+import DeveloperView from "@/components/developer/DeveloperView";
+import AdminView from "@/components/admin/AdminView";
+import ClientView from "@/components/client/ClientView";
+
 import authenticationRoutes from "./authentication";
 import developerRoutes from "./developer";
 import backofficeRoutes from "./backoffice";
-import MainView from "@/components/layout/Main";
+import adminRoutes from "./admin";
+import clientRoutes from "./client";
 
 Vue.use(Router);
 
@@ -12,7 +20,7 @@ export default new Router({
   mode: "history",
   routes: [
     {
-      path: "/",
+      path: "/authentication/",
       name: "AuthenticationView",
       component: AuthenticationView,
       redirect: { name: "Login" },
@@ -21,19 +29,44 @@ export default new Router({
     },
     {
       path: "/",
-      name: "DeveloperView",
+      name: "MainView",
       component: MainView,
-      redirect: { name: "DeveloperDashboard" },
-      meta: { isPrivate: true, isDeveloper: true },
-      children: developerRoutes
-    },
-    {
-      path: "/",
-      name: "main",
-      component: MainView,
-      redirect: { name: "BackofficeDashboard" },
-      meta: { isPrivate: true, isBackofficeUser: true },
-      children: backofficeRoutes
+      redirect: { name: "DeveloperView" },
+      meta: { isPrivate: true },
+      children: [
+        {
+          path: "developer",
+          name: "DeveloperView",
+          meta: { isDeveloper: true },
+          component: DeveloperView,
+          redirect: { name: "Profile" },
+          children: developerRoutes
+        },
+        {
+          path: "backoffice",
+          name: "BackofficeView",
+          component: BackofficeView,
+          meta: { isBackofficeUser: true },
+          redirect: { name: "DeveloperList" },
+          children: backofficeRoutes
+        },
+        {
+          path: "admin",
+          name: "AdminView",
+          component: AdminView,
+          meta: { isAdmin: true },
+          redirect: { name: "AdminDashboard" },
+          children: adminRoutes
+        },
+        {
+          path: "client",
+          name: "ClientView",
+          component: ClientView,
+          meta: { isClient: true },
+          redirect: { name: "ClientDashboard" },
+          children: clientRoutes
+        }
+      ]
     }
   ]
 });

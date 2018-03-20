@@ -1,9 +1,9 @@
-import Dashboard from "@/components/backoffice/Dashboard";
+import DeveloperList from "@/components/backoffice/DeveloperList";
 
 export default [
   {
-    path: "dashboard",
-    name: "BackofficeDashboard",
-    component: Dashboard
+    path: "developer-list",
+    name: "DeveloperList",
+    component: DeveloperList
   }
 ];

@@ -34,7 +34,7 @@ export default {
         })
         .then(() => {
           this.clearToken();
-          this.$router.push("/");
+          this.$router.push({ name: "AuthenticationView" });
         });
     }
   }

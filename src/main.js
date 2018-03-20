@@ -8,34 +8,62 @@ import router from "./router";
 import store from "./store";
 
 Vue.use(VueResource);
-
 Vue.use(VeeValidate);
 
 Vue.http.options.root = "http://api.devpool.test";
+
 Vue.http.interceptors.push((request, next) => {
   request.headers.set("token", store.getters.getToken);
   next(response => {
     if (response.status === 401) {
       store.dispatch("clearToken");
-      router.push("/");
+      router.push({ name: "AuthenticationView" });
     }
   });
 });
 
-router.beforeEach((to, from, next) => {
-  store.dispatch("loadToken");
-  const loggedIn = store.getters.isLoggedIn;
-  if (to.matched.some(record => record.meta.isPublic)) {
-    if (loggedIn) {
-      next({ name: "Dashboard" });
-    }
-    next();
-  } else if (to.matched.some(record => record.meta.isPrivate)) {
-    if (!loggedIn) {
-      next({ name: "Login" });
-    }
-    next();
+function redirect() {
+  if (store.getters.isBackofficeUser) {
+    return "BackofficeView";
+  } else if (store.getters.isDeveloper) {
+    return "DeveloperView";
+  } else if (store.getters.isAdmin) {
+    return "AdminView";
+  } else if (store.getters.isClient) {
+    return "ClientView";
   }
+  return "AuthenticationView";
+}
+
+router.beforeResolve((to, from, next) => {
+  // Set up user status
+  store.dispatch("loadToken");
+  store.dispatch("loadType");
+  const loggedIn = store.getters.isLoggedIn;
+
+  // Redirect not logged in users to authentication view
+  if (to.matched.some(record => record.meta.isPrivate) && !loggedIn) {
+    next({ name: "AuthenticationView" });
+  }
+
+  // Redirect logged in users to their dashboard
+  if (to.matched.some(record => record.meta.isPublic) && loggedIn) {
+    next({ name: redirect() });
+  }
+
+  // Redirect people who are trying to access forbidden routes
+  if (
+    (to.matched.some(record => record.meta.isDeveloper) &&
+      !store.getters.isDeveloper) ||
+    (to.matched.some(record => record.meta.isBackofficeUser) &&
+      !store.getters.isBackofficeUser) ||
+    (to.matched.some(record => record.meta.isAdmin) &&
+      !store.getters.isAdmin) ||
+    (to.matched.some(record => record.meta.isClient) && !store.getters.isClient)
+  ) {
+    next({ name: redirect() });
+  }
+  next();
 });
 
 Vue.config.productionTip = false;

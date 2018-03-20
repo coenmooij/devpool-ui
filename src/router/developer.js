@@ -1,9 +1,9 @@
-import Dashboard from "@/components/developer/Dashboard";
+import Profile from "@/components/developer/Profile";
 
 export default [
   {
-    path: "dashboard",
-    name: "DeveloperDashboard",
-    component: Dashboard
+    path: "profile",
+    name: "Profile",
+    component: Profile
   }
 ];
