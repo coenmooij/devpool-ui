@@ -2,7 +2,7 @@
   <nav class="navbar bg-dark justify-content-between">
     <div class="container">
       <router-link 
-        :to="{name:'Dashboard'}"
+        to="/"
         tag="a" 
         class="navbar-brand">
         <span class="text-white">Caspar Coding Developers</span>
@@ -24,7 +24,8 @@ import { mapActions } from "vuex";
 export default {
   methods: {
     ...mapActions({
-      clearToken: "clearToken"
+      clearToken: "clearToken",
+      clearType: "clearType"
     }),
     logout() {
       this.$http
@@ -34,6 +35,7 @@ export default {
         })
         .then(() => {
           this.clearToken();
+          this.clearType();
           this.$router.push({ name: "AuthenticationView" });
         });
     }

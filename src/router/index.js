@@ -67,6 +67,10 @@ export default new Router({
           children: clientRoutes
         }
       ]
+    },
+    {
+      path: '/*',
+      redirect: '/'
     }
   ]
 });

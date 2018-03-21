@@ -6,8 +6,8 @@
           name="fade" 
           appear>
           <div class=" card-header bg-dark text-white text-center">
-            <router-link 
-              :to="{name:'Dashboard'}"
+            <router-link
+              to="/"
               tag="a">
               <h1 class="text-white">Caspar Coding</h1>
               <h2 class="text-white">Developers</h2>

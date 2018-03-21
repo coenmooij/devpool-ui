@@ -35,35 +35,33 @@ function redirect() {
   return "AuthenticationView";
 }
 
-router.beforeResolve((to, from, next) => {
+router.beforeEach((to, from, next) => {
   // Set up user status
   store.dispatch("loadToken");
   store.dispatch("loadType");
   const loggedIn = store.getters.isLoggedIn;
 
-  // Redirect not logged in users to authentication view
-  if (to.matched.some(record => record.meta.isPrivate) && !loggedIn) {
+
+  if (to.matched.some(route => route.meta.isPrivate) && !loggedIn) {
+    // Redirect not logged in users to authentication view
     next({ name: "AuthenticationView" });
-  }
-
-  // Redirect logged in users to their dashboard
-  if (to.matched.some(record => record.meta.isPublic) && loggedIn) {
+  } else if (to.matched.some(route => route.meta.isPublic) && loggedIn) {
+    // Redirect logged in users to their dashboard
     next({ name: redirect() });
-  }
-
-  // Redirect people who are trying to access forbidden routes
-  if (
-    (to.matched.some(record => record.meta.isDeveloper) &&
+  } else if (
+    // Redirect people who are trying to access forbidden routes
+    (to.matched.some(route => route.meta.isDeveloper) &&
       !store.getters.isDeveloper) ||
-    (to.matched.some(record => record.meta.isBackofficeUser) &&
+    (to.matched.some(route => route.meta.isBackofficeUser) &&
       !store.getters.isBackofficeUser) ||
-    (to.matched.some(record => record.meta.isAdmin) &&
+    (to.matched.some(route => route.meta.isAdmin) &&
       !store.getters.isAdmin) ||
-    (to.matched.some(record => record.meta.isClient) && !store.getters.isClient)
+    (to.matched.some(route => route.meta.isClient) && !store.getters.isClient)
   ) {
     next({ name: redirect() });
+  } else {
+    next();
   }
-  next();
 });
 
 Vue.config.productionTip = false;
