@@ -41,6 +41,7 @@ router.beforeEach((to, from, next) => {
   store.dispatch("loadType");
   const loggedIn = store.getters.isLoggedIn;
 
+  console.log(process.env.API_URL);
 
   if (to.matched.some(route => route.meta.isPrivate) && !loggedIn) {
     // Redirect not logged in users to authentication view
