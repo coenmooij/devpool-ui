@@ -59,7 +59,7 @@
           <div class="form-group">
             <label for="password">Password*</label>
             <input
-              v-validate="'required|alpha_dash|min:6'" 
+              v-validate="'required|min:6'" 
               id="password" 
               v-model.lazy="password" 
               class="form-control"
