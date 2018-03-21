@@ -10,7 +10,7 @@ import store from "./store";
 Vue.use(VueResource);
 Vue.use(VeeValidate);
 
-Vue.http.options.root = "http://api.devpool.test";
+Vue.http.options.root = process.env.API_BASE_URL;
 
 Vue.http.interceptors.push((request, next) => {
   request.headers.set("token", store.getters.getToken);
@@ -40,8 +40,6 @@ router.beforeEach((to, from, next) => {
   store.dispatch("loadToken");
   store.dispatch("loadType");
   const loggedIn = store.getters.isLoggedIn;
-
-  console.log(process.env.API_URL);
 
   if (to.matched.some(route => route.meta.isPrivate) && !loggedIn) {
     // Redirect not logged in users to authentication view
