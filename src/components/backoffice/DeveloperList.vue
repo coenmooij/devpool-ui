@@ -32,7 +32,7 @@ export default {
       return this.developers.filter(developer => {
         return (
           this.foundInValue(developer.seniority) ||
-          this.foundInValue(developer.specialty) ||
+          this.foundInValue(developer.speciality) ||
           this.foundInValue(developer.full_name) ||
           this.foundInValue(developer.id.toString()) ||
           this.foundInValue(developer.pipeline_status) ||
@@ -57,7 +57,7 @@ export default {
       return false;
     },
     foundInValue(value) {
-      if (value === undefined) {
+      if (value === undefined || value === null) {
         return false;
       }
       return value.toLowerCase().indexOf(this.searchQuery.toLowerCase()) > -1;
