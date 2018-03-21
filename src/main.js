@@ -53,8 +53,7 @@ router.beforeEach((to, from, next) => {
       !store.getters.isDeveloper) ||
     (to.matched.some(route => route.meta.isBackofficeUser) &&
       !store.getters.isBackofficeUser) ||
-    (to.matched.some(route => route.meta.isAdmin) &&
-      !store.getters.isAdmin) ||
+    (to.matched.some(route => route.meta.isAdmin) && !store.getters.isAdmin) ||
     (to.matched.some(route => route.meta.isClient) && !store.getters.isClient)
   ) {
     next({ name: redirect() });
