@@ -19,3 +19,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.container {
+  padding: 1rem !important;
+}
+</style>

@@ -4,6 +4,7 @@
     <hr>
     <div>
       <p v-if="searchQuery !== ''">Displaying results for: {{ searchQuery }}</p>
+      <app-loading-animation v-if="!loaded"/>
       <app-developer
         v-for="developer in filteredDevelopers"
         :key="developer.id"
@@ -15,16 +16,19 @@
 <script>
 import Developer from "./Developer";
 import SearchBar from "./SearchBar";
+import LoadingAnimation from "../layout/LoadingAnimation";
 
 export default {
   components: {
     "app-developer": Developer,
-    "app-search-bar": SearchBar
+    "app-search-bar": SearchBar,
+    "app-loading-animation": LoadingAnimation
   },
   data() {
     return {
       developers: [],
-      searchQuery: ""
+      searchQuery: "",
+      loaded: false
     };
   },
   computed: {
@@ -70,6 +74,7 @@ export default {
         })
         .then(data => {
           this.developers = data.data.developers;
+          this.loaded = true;
         });
     },
     search(searchQuery) {

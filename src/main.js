@@ -6,6 +6,7 @@ import VeeValidate from "vee-validate";
 import App from "./App";
 import router from "./router";
 import store from "./store";
+import moment from "moment";
 
 Vue.use(VueResource);
 Vue.use(VeeValidate);
@@ -17,6 +18,7 @@ Vue.http.interceptors.push((request, next) => {
   next(response => {
     if (response.status === 401) {
       store.dispatch("clearToken");
+      store.dispatch("clearType");
       router.push({ name: "AuthenticationView" });
     }
   });
@@ -68,6 +70,10 @@ Vue.filter(
   "capitalize",
   value => value.charAt(0).toUpperCase() + value.slice(1)
 );
+
+Vue.filter("formatDate", value => {
+  return value ? moment(String(value)).format("MMMM Do YYYY [at] hh:mm") : "-";
+});
 
 /* eslint-disable no-new */
 new Vue({

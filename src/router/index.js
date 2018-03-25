@@ -69,8 +69,11 @@ export default new Router({
       ]
     },
     {
-      path: '/*',
-      redirect: '/'
+      path: "/assets/*"
+    },
+    {
+      path: "/*",
+      redirect: "/"
     }
   ]
 });

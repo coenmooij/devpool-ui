@@ -6,7 +6,12 @@
     >
       <i 
         v-if="developer.priority" 
-        class="fa fa-arrow-up" /> {{ developer.display_name }} ({{ developer.id }})
+        class="fa fa-arrow-up" />
+      <router-link 
+        :to="{name: 'SingleDeveloper', params:{id: developer.id}}"
+        class="profile-link text-white">
+        {{ developer.display_name }} ({{ developer.id }})
+      </router-link>
     </div>
     <div class="card-body">
       <p class="card-text">
@@ -42,6 +47,10 @@ export default {
   display: block;
   float: left;
   margin-left: 10px;
+}
+
+.profile-link:hover {
+  text-decoration: underline;
 }
 
 .contact-info {

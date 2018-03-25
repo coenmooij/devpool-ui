@@ -37,6 +37,11 @@ h3 {
   height: 0.5em;
 }
 
+a.navigation-back {
+  display: block;
+  padding: 1rem 0;
+}
+
 .form-control {
   background-color: #f2f2f3;
 }
