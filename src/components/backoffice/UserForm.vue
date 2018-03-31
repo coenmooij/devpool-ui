@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <h5 class="card-header">
-      User settings
+      User Settings
     </h5>
     <div class="card-body">
       <form>
@@ -57,7 +57,7 @@
             type="submit" 
             class="btn btn-success"
             @click.prevent="save">
-            Save
+            <i class="fa fa-refresh"/> Save
           </button>
         </div>
       </form>

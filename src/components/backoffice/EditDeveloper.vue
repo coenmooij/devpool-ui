@@ -14,6 +14,18 @@
           nickname: developer.nickname,
           show_nickname: developer.show_nickname
       }" />
+      <app-developer-form 
+        :developer="{
+          id: id,
+          speciality: developer.speciality,
+          seniority: developer.seniority,
+          pipeline_status: developer.pipeline_status,
+          salary: developer.salary,
+          country: developer.country,
+          phone: developer.phone,
+          birth_date: developer.birth_date,
+          priority: developer.priority
+      }"/>
     </div>
     <app-loading-animation v-else />
   </div>
@@ -22,11 +34,13 @@
 <script>
 import LoadingAnimation from "../layout/LoadingAnimation";
 import UserForm from "./UserForm";
+import DeveloperForm from "./DeveloperForm";
 
 export default {
   components: {
     "app-loading-animation": LoadingAnimation,
-    "app-user-form": UserForm
+    "app-user-form": UserForm,
+    "app-developer-form": DeveloperForm
   },
   data() {
     return {
@@ -62,13 +76,7 @@ export default {
 </script>
 
 <style scoped>
-input {
-  background-color: white !important;
-}
-
-.forms {
-  background-color: white;
-  padding: 1rem;
-  border: 1px solid #eee;
+.card {
+  margin-bottom: 2rem;
 }
 </style>
