@@ -34,7 +34,12 @@
 
 <script>
 export default {
-  props: { developer: Object }
+  props: {
+    developer: {
+      type: Object,
+      required: true
+    }
+  }
 };
 </script>
 

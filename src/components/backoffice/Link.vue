@@ -12,7 +12,10 @@
 <script>
 export default {
   props: {
-    link: Object
+    link: {
+      type: Object,
+      required: true
+    }
   },
   computed: {
     hasImage() {
