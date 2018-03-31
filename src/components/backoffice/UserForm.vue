@@ -75,7 +75,7 @@ export default {
   },
   data() {
     return {
-      saved: false,
+      saved: true,
       firstName: null,
       lastName: null,
       nickname: null,
