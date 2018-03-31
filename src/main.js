@@ -71,8 +71,11 @@ Vue.filter(
   value => value.charAt(0).toUpperCase() + value.slice(1)
 );
 
-Vue.filter("formatDate", value => {
+Vue.filter("formatDateTime", value => {
   return value ? moment(String(value)).format("MMMM Do YYYY [at] hh:mm") : "-";
+});
+Vue.filter("formatDate", value => {
+  return value ? moment(String(value)).format("MMMM Do YYYY") : "-";
 });
 
 /* eslint-disable no-new */

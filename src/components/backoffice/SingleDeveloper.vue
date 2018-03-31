@@ -27,7 +27,7 @@
         <app-developer-field v-bind="{ title: 'country', value: getValue(developer.country) }" />
         <app-developer-field v-bind="{ title: 'email', value: getValue(developer.email) }" />
         <app-developer-field v-bind="{ title: 'phone', value: getValue(developer.phone) }" />
-        <app-developer-field v-bind="{ title: 'birth date', value: getValue(developer.birth_date) }" />
+        <app-developer-field v-bind="{ title: 'birth date', value: birthDate }" />
         <app-developer-field v-bind="{ title: 'has priority', value: getValue(developer.priority === 1 ? 'yes': 'no') }" />
         <app-developer-field v-bind="{ title: 'account created', value: createdAt }" />
         <app-developer-field v-bind="{ title: 'account updated', value: updatedAt }" />
@@ -102,10 +102,17 @@ export default {
       return this.$route.params.id;
     },
     createdAt() {
-      return Vue.filter("formatDate")(this.getValue(this.developer.created_at));
+      return Vue.filter("formatDateTime")(
+        this.getValue(this.developer.created_at)
+      );
     },
     updatedAt() {
-      return Vue.filter("formatDate")(this.getValue(this.developer.updated_at));
+      return Vue.filter("formatDateTime")(
+        this.getValue(this.developer.updated_at)
+      );
+    },
+    birthDate() {
+      return Vue.filter("formatDate")(this.getValue(this.developer.birth_date));
     },
     getTechnologies() {
       if (this.getValue(this.developer.technologies) === "-") {

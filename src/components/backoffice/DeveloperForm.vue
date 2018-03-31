@@ -66,6 +66,15 @@
             @input="change">
         </div>
         <div class="form-group">
+          <label for="birth_date">Birth Date</label>
+          <input 
+            id="birth_date"
+            v-model="birthDate"            
+            type="date" 
+            class="form-control"
+            @input="change">
+        </div>
+        <div class="form-group">
           <label for="phone">Phone</label>
           <input 
             id="phone"
@@ -123,6 +132,7 @@ export default {
       speciality: null,
       seniority: null,
       pipelineStatus: null,
+      birthDate: null,
       specialityOptions: [
         { label: "Front-end", value: "front-end" },
         { label: "Back-end", value: "back-end" },
@@ -162,7 +172,8 @@ export default {
         priority: this.priority,
         speciality: this.speciality,
         seniority: this.seniority,
-        pipeline_status: this.pipelineStatus
+        pipeline_status: this.pipelineStatus,
+        birth_date: this.birthDate
       };
     }
   },
@@ -175,6 +186,7 @@ export default {
     this.speciality = this.developer.speciality;
     this.seniority = this.developer.seniority;
     this.pipelineStatus = this.developer.pipeline_status;
+    this.birthDate = this.developer.birth_date;
   },
   methods: {
     change() {
