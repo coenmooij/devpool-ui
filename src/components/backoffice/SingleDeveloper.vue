@@ -9,7 +9,14 @@
       v-if="typeof developer.id === 'number'"
       class="info">
       <div class="pull-left">
-        <h1>{{ developer.display_name }}</h1>
+        <h1>
+          {{ developer.display_name }}
+          <router-link
+            :to="{ name: 'EditDeveloper' }"
+            class="edit-link">
+            <i class="fa fa-edit"/>
+          </router-link>
+        </h1>
         <app-developer-field v-bind="{ title: 'id', value: getValue(developer.id) }" />
         <app-developer-field v-bind="{ title: 'name', value: getValue(developer.full_name) }" />
         <app-developer-field v-bind="{ title: 'nickname', value: getValue(developer.nickname) }" />
@@ -150,3 +157,9 @@ export default {
 };
 </script>
 
+<style>
+.edit-link {
+  margin-left: 1rem;
+  font-size: 0.6em;
+}
+</style>

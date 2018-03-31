@@ -1,5 +1,6 @@
 import DeveloperList from "@/components/backoffice/DeveloperList";
 import SingleDeveloper from "@/components/backoffice/SingleDeveloper";
+import EditDeveloper from "@/components/backoffice/EditDeveloper";
 
 export default [
   {
@@ -11,5 +12,10 @@ export default [
     path: "developer/:id",
     name: "SingleDeveloper",
     component: SingleDeveloper
+  },
+  {
+    path: "developer/:id/edit",
+    name: "EditDeveloper",
+    component: EditDeveloper
   }
 ];
