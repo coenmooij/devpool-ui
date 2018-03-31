@@ -14,6 +14,33 @@
             class="form-control"
             @input="change">
         </div>
+        <div class="form-group">
+          <label for="country">Country</label>
+          <input 
+            id="country"
+            v-model="country"            
+            type="text" 
+            class="form-control"
+            @input="change">
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone</label>
+          <input 
+            id="phone"
+            v-model="phone"            
+            type="text" 
+            class="form-control"
+            @input="change">
+        </div>
+        <div class="form-check">
+          <input 
+            id="priority"
+            v-model="priority"
+            type="checkbox" 
+            class="form-check-input"
+            @click="change">
+          <label for="priority">Developer has priority</label>
+        </div>
         <div class="action-bar">
           <button
             v-if="saved"
@@ -47,19 +74,28 @@ export default {
   data() {
     return {
       saved: false,
-      salary: null
+      salary: null,
+      country: null,
+      phone: null,
+      priority: null
     };
   },
   computed: {
     updatedFields() {
       return {
-        salary: this.salary
+        salary: this.salary,
+        country: this.country,
+        phone: this.phone,
+        priority: this.priority
       };
     }
   },
   created() {
     this.id = this.developer.id;
     this.salary = this.developer.salary ? this.developer.salary : "";
+    this.country = this.developer.country ? this.developer.country : "";
+    this.phone = this.developer.phone ? this.developer.phone : "";
+    this.priority = this.developer.priority;
   },
   methods: {
     change() {
