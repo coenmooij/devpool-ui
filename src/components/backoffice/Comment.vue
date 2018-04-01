@@ -11,7 +11,7 @@
         </td>
         <td>
           <div class="comment-content">
-            <span class="author">{{ comment.author.display_name }} wrote on {{ comment.created_at |formatDate }}</span>
+            <span class="author">{{ comment.author.display_name }} wrote on {{ comment.created_at |formatDateTime }}</span>
             <hr>
             <p> 
               {{ comment.message }}
