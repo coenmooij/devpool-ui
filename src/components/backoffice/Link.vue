@@ -38,7 +38,7 @@ export default {
     },
     getClass() {
       if (this.link.type === "website") {
-        return "fa fa-internet-explorer";
+        return "fa fa-chrome";
       }
       return "fa fa-" + this.link.type;
     }
