@@ -26,6 +26,7 @@
           birth_date: developer.birth_date,
           priority: developer.priority
       }"/>
+      <app-technology-form />
     </div>
     <app-loading-animation v-else />
   </div>
@@ -35,12 +36,14 @@
 import LoadingAnimation from "../layout/LoadingAnimation";
 import UserForm from "./UserForm";
 import DeveloperForm from "./DeveloperForm";
+import TechnologyForm from "./TechnologyForm";
 
 export default {
   components: {
     "app-loading-animation": LoadingAnimation,
     "app-user-form": UserForm,
-    "app-developer-form": DeveloperForm
+    "app-developer-form": DeveloperForm,
+    "app-technology-form": TechnologyForm
   },
   data() {
     return {

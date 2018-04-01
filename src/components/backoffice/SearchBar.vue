@@ -7,7 +7,7 @@
       name="searchQuery"
       type="text"
       class="form-control"
-      placeholder="Search developers..."
+      placeholder="Search..."
       @keyup="search">
     <span class="input-group-btn">
       <button 
