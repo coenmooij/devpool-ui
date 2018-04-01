@@ -6,7 +6,7 @@
 .loading {
   width: 100%;
   text-align: center;
-  font-size: 3rem;
-  margin: 3rem 0;
+  font-size: 2.5rem;
+  margin: 2.5rem 0;
 }
 </style>

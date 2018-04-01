@@ -41,7 +41,14 @@
           height="250px">
         <br>
         <br>
-        <h3>Links</h3>
+        <h3>
+          Links
+          <router-link
+            :to="{ name: 'ManageLinks' }"
+            class="edit-link">
+            <i class="fa fa-edit"/>
+          </router-link>
+        </h3>
         <hr>
         <div
           v-for="link in developer.links"
@@ -79,7 +86,11 @@
             v-for="comment in developer.comments" 
             :key="comment.id" 
             :comment="comment"/>
-          <div v-if="!hasComments && !showCommentForm" class="notification">No comments yet...</div>
+          <div 
+            v-if="!hasComments && !showCommentForm" 
+            class="notification">
+            No comments yet...
+          </div>
         </div>
         <app-loading-animation v-if="loadingComments" />
       </div>
