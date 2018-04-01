@@ -60,18 +60,31 @@
           :key="answer.id"
           :answer="answer" />
       </div>
-      <div 
-        v-if="hasComments"
-        class="comments">
+      <div class="comments">
         <hr>
-        <h3>Comments</h3>
-        <app-comment 
-          v-for="comment in developer.comments" 
-          :key="comment.id" 
-          :comment="comment"/>
+        <h3 class="pull-left">Comments</h3>
+        <button 
+          class="btn btn-dark pull-right" 
+          @click="showCommentForm = true">
+          <i class="fa fa-plus"/> Add comment
+        </button>
+        <div class="clearfix"/>
+        <div v-if="!loadingComments">
+          <app-comment-form 
+            v-if="showCommentForm"
+            :id="id"
+            @cancel="showCommentForm = false"
+            @saved="reloadComments"/>
+          <app-comment 
+            v-for="comment in developer.comments" 
+            :key="comment.id" 
+            :comment="comment"/>
+          <div v-if="!hasComments && !showCommentForm" class="notification">No comments yet...</div>
+        </div>
+        <app-loading-animation v-if="loadingComments" />
       </div>
     </div>
-    <app-loading-animation v-else />
+    <app-loading-animation v-if="!loaded" />
   </div>
 </template>
 
@@ -79,6 +92,7 @@
 import DeveloperField from "./DeveloperField";
 import LoadingAnimation from "../layout/LoadingAnimation";
 import Comment from "./Comment";
+import CommentForm from "./CommentForm";
 import Link from "./Link";
 import Answer from "./Answer";
 import Vue from "vue";
@@ -89,12 +103,15 @@ export default {
     "app-loading-animation": LoadingAnimation,
     "app-link": Link,
     "app-comment": Comment,
+    "app-comment-form": CommentForm,
     "app-answer": Answer
   },
   data() {
     return {
       developer: Object,
-      loaded: false
+      loaded: false,
+      showCommentForm: false,
+      loadingComments: false
     };
   },
   computed: {
@@ -159,6 +176,19 @@ export default {
           this.developer = data.data.developer;
           this.loaded = true;
         });
+    },
+    reloadComments() {
+      this.showCommentForm = false;
+      this.loadingComments = true;
+      this.$http
+        .get("developers/" + this.id + "/comments")
+        .then(response => {
+          return response.json();
+        })
+        .then(data => {
+          this.developer.comments = data.data.comments;
+          this.loadingComments = false;
+        });
     }
   }
 };
@@ -168,5 +198,13 @@ export default {
 .edit-link {
   margin-left: 1rem;
   font-size: 0.6em;
+}
+
+.notification {
+  margin: 1rem 0;
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+  border: 2px dashed #ccc;
 }
 </style>
