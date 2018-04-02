@@ -108,7 +108,7 @@
 
 <script>
 import DeveloperField from "./DeveloperField";
-import LoadingAnimation from "../layout/LoadingAnimation";
+import LoadingAnimation from "../../layout/LoadingAnimation";
 import Comment from "./Comment";
 import CommentForm from "./CommentForm";
 import Link from "./Link";

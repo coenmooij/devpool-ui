@@ -1,5 +1,5 @@
 import DeveloperList from "@/components/backoffice/DeveloperList/DeveloperListView";
-import SingleDeveloper from "@/components/backoffice/SingleDeveloper";
+import SingleDeveloper from "@/components/backoffice/SingleDeveloper/SingleDeveloperView";
 import EditDeveloper from "@/components/backoffice/EditDeveloper";
 import SingleDeveloperLinks from "@/components/backoffice/SingleDeveloperLinks/SingleDeveloperLinksView";
 import ManageForms from "@/components/backoffice/ManageForms";
