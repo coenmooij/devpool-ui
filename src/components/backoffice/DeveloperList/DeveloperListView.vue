@@ -16,7 +16,7 @@
 <script>
 import Developer from "./Developer";
 import SearchBar from "./SearchBar";
-import LoadingAnimation from "../layout/LoadingAnimation";
+import LoadingAnimation from "../../layout/LoadingAnimation";
 
 export default {
   components: {

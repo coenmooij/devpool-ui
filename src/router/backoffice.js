@@ -1,4 +1,4 @@
-import DeveloperList from "@/components/backoffice/DeveloperList";
+import DeveloperList from "@/components/backoffice/DeveloperList/DeveloperListView";
 import SingleDeveloper from "@/components/backoffice/SingleDeveloper";
 import EditDeveloper from "@/components/backoffice/EditDeveloper";
 import ManageLinks from "@/components/backoffice/ManageLinks";
