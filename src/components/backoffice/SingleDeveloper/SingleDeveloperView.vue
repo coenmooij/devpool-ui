@@ -12,7 +12,7 @@
         <h1>
           {{ developer.display_name }}
           <router-link
-            :to="{ name: 'EditDeveloper' }"
+            :to="{ name: 'SingleDeveloperEdit' }"
             class="edit-link">
             <i class="fa fa-edit"/>
           </router-link>

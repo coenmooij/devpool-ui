@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import LoadingAnimation from "../layout/LoadingAnimation";
+import LoadingAnimation from "../../layout/LoadingAnimation";
 import UserForm from "./UserForm";
 import DeveloperForm from "./DeveloperForm";
 import TechnologyForm from "./TechnologyForm";

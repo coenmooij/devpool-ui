@@ -73,7 +73,7 @@
 </template>
 
 <script>
-import LoadingAnimation from "../layout/LoadingAnimation";
+import LoadingAnimation from "../../layout/LoadingAnimation";
 
 export default {
   components: {

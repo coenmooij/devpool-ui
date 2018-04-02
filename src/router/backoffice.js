@@ -1,6 +1,6 @@
 import DeveloperList from "@/components/backoffice/DeveloperList/DeveloperListView";
 import SingleDeveloper from "@/components/backoffice/SingleDeveloper/SingleDeveloperView";
-import EditDeveloper from "@/components/backoffice/EditDeveloper";
+import SingleDeveloperEdit from "@/components/backoffice/SingleDeveloperEdit/SingleDeveloperEditView";
 import SingleDeveloperLinks from "@/components/backoffice/SingleDeveloperLinks/SingleDeveloperLinksView";
 import ManageForms from "@/components/backoffice/ManageForms";
 
@@ -17,8 +17,8 @@ export default [
   },
   {
     path: "developer/:id/edit",
-    name: "EditDeveloper",
-    component: EditDeveloper
+    name: "SingleDeveloperEdit",
+    component: SingleDeveloperEdit
   },
   {
     path: "developer/:id/links",
