@@ -61,7 +61,14 @@
         v-if="hasForm"
         class="forms">
         <hr>
-        <h3>Form Answers</h3>
+        <h3>
+          Form Answers 
+          <router-link
+            :to="{ name: 'ManageForms' }"
+            class="edit-link">
+            <i class="fa fa-edit"/>
+          </router-link>
+        </h3>
         <app-answer
           v-for="answer in developer.answers"
           :key="answer.id"
