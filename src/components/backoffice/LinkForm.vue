@@ -92,7 +92,7 @@ export default {
         })
         .then(() => {
           this.saved = true;
-          this.$emit("submitted");
+          this.$emit("submit");
         });
     }
   }

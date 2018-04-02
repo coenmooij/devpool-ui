@@ -18,7 +18,7 @@
         <app-link-form 
           v-if="showAddLinkForm"
           @cancel="showAddLinkForm = false"
-          @submitted="newLink"/>
+          @submit="newLink"/>
         <div 
           v-if="loaded" 
           class="links">
