@@ -44,7 +44,7 @@
         <h3>
           Links
           <router-link
-            :to="{ name: 'ManageLinks' }"
+            :to="{ name: 'SingleDeveloperLinks' }"
             class="edit-link">
             <i class="fa fa-edit"/>
           </router-link>

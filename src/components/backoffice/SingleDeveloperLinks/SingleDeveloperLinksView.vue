@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import LoadingAnimation from "../layout/LoadingAnimation";
+import LoadingAnimation from "../../layout/LoadingAnimation";
 import ManageLink from "./ManageLink";
 import LinkForm from "./LinkForm";
 
